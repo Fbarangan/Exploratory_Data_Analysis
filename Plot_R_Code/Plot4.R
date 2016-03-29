@@ -26,7 +26,7 @@ Data_tbl <- filter(Data_tbl, NewDateTime >= "2007-02-01 00:00:00" & NewDateTime 
 dim(Data)
 
 #Plot Data
-par(mfrow = c(1,1))
+par(mfrow = c(2,2))
 
 with(Data_tbl, {
         plot(NewDateTime, Sub_metering_1, xlab = "", ylab = "Energy Sub Metering", type = "l")
