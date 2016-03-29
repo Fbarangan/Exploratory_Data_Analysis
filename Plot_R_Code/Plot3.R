@@ -29,16 +29,15 @@ par(mfrow = c(1,1))
 
 with(Data_tbl, {
         plot(NewDateTime, Sub_metering_1, xlab = "", ylab = "Energy Sub Metering", type = "l")
-        line(NewDateTime, Sub_metering_2, col="red" )
-        line(NewDateTime, Sub_metering_3, col= "blue" )
-        legend("topright", col = c("Black", "Red", "Blue"), lty = = 1,
+        lines(NewDateTime, Sub_metering_2, col = "red" )
+        lines(NewDateTime, Sub_metering_3, col= "blue" )
+        legend("topright", col = c("Black", "Red", "Blue"), lty = 1,
                legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3") )
         }
      )
 
 
-
 #Copy to PNG
-dev.copy(png, file = "plot2.png" )
+dev.copy(png, file = "plot3.png" )
 dev.off()
 
