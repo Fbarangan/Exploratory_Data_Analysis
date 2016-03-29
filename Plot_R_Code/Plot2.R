@@ -16,7 +16,10 @@ dateDownloaded <- date()
 Data <- read.table (file = "./RawData/household_power_consumption.txt", sep = ";", na.strings = "?", stringsAsFactors = FALSE, header = TRUE, skip = 0)
 
 Data_tbl <- tbl_df(Data)
+Data_tbl <- mutate(Data_tbl, NewDateTime = as.POSIXct(paste(Data_tbl$Date,Data_tbl$Time), format = "%d/%m/%Y %T"))
 
+# Cleanup NA
+Data_tbl <- filter(Data_tbl, NewDateTime >= "2007-02-01 00:00:00" & NewDateTime < "2007-02-03 00:00:00")
 
 #Rename column
 
