@@ -29,16 +29,27 @@ dim(Data)
 par(mfrow = c(2,2))
 
 with(Data_tbl, {
+        plot(NewDateTime, Global_active_power, xlab = "", ylab = "Global Active Power",
+             type = "l")
+
+        plot(NewDateTime, Voltage, xlab = "Date Time", ylab = "Voltage",
+             type = "l")
+
         plot(NewDateTime, Sub_metering_1, xlab = "", ylab = "Energy Sub Metering", type = "l")
         lines(NewDateTime, Sub_metering_2, col = "red" )
         lines(NewDateTime, Sub_metering_3, col= "blue" )
         legend("topright", col = c("Black", "Red", "Blue"), lty = 1,
                legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3") )
+
+        plot(NewDateTime, Global_reactive_power,
+                xlab = "Date Time",
+                ylab = "Global Reactive Power",
+                type = "l")
         }
      )
 
 
 #Copy to PNG
-dev.copy(png, file = "plot3.png" )
+dev.copy(png, file = "plot4.png" )
 dev.off()
 
