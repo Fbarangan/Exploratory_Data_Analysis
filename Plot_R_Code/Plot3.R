@@ -1,6 +1,6 @@
 #File Management and data download:
 library(dplyr)
-                
+
 #Create file
 if (!file.exists("RawData"))
 {dir.create("RawData")}
@@ -27,11 +27,16 @@ dim(Data)
 #Plot Data
 par(mfrow = c(1,1))
 
-plot(Data_tbl$NewDateTime , Data_tbl$Global_active_power,
-     type = "l",
-     xlab = "",
-     ylab = "Global Active Power (Kilowatts)"
+with(Data_tbl, {
+        plot(NewDateTime, Sub_metering_1, xlab = "", ylab = "Energy Sub Metering", type = "l")
+        line(NewDateTime, Sub_metering_2, col="red" )
+        line(NewDateTime, Sub_metering_3, col= "blue" )
+        legend("topright", col = c("Black", "Red", "Blue"), lty = = 1,
+               legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3") )
+        }
      )
+
+
 
 #Copy to PNG
 dev.copy(png, file = "plot2.png" )
