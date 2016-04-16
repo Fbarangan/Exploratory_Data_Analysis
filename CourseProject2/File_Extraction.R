@@ -37,14 +37,19 @@ SCC_ddply <- tbl_df(SCC)
 # Summary of data per year, group by year, then summarize total of emmision by year using dply pipeline.
 table(NEI_ddply$year)
 
-by_Year <- group_by(NEI_ddply,year)
-EmissionByYear <- summarise(by_Year, Total = sum(Emissions))
+EmissionsByYear <- NEI_ddply %>%
+        group_by(year) %>%
+        summarise(Total = sum(Emissions )) %>%
+        select(Year = year, Emission = Total)
 
+# Convert to log of 10 for better visualization
+EmissionsByYear$Emission <- log10(EmissionsByYear$Emission)
 
-# rename
-
-# Plot1
-
+#Plot using Base
+plot(EmissionsByYear$Year, EmissionsByYear$Emission,
+      xlab= "Year",
+      ylab = "Total Emission by Year",
+      pch = 10)
 
 
 
