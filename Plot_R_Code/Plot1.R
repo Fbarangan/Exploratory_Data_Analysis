@@ -12,7 +12,7 @@ dateDonwloaded <- date()
 
 # Unzip
 
-rawData <- file()
+
 
 #Reading data
 Data <- read.table (file = "./RawData/household_power_consumption.txt", sep = ";", na.strings = "?", stringsAsFactors = FALSE, header = FALSE, skip = 0)
@@ -35,22 +35,19 @@ dim(Data)
 #format, then filter the desired dates
 rawData2 <- tbl_df(Data)
 rawData2 <-  rawData2[c(2:2075260),]
-rawData3 <- mutate(rawData2, Date = as.POSIXct(rawData2$Date, format = "%d/%m/%Y"))
+rawData3 <- mutate(rawData2, Date2 = as.POSIXct(rawData2$Date, format = "%d/%m/%Y"))
 rawData4 <- select(rawData3, -Time)
-rawData5 <- filter(rawData4, Date == "2007-02-01" | Date == "2007-02-02")
+rawData5 <- filter(rawData3, Date2 == "2007-02-01" | Date2 == "2007-02-02")
 
 # convert  Global active power to numeric, then bind column back to the main data
 
-GlobalActivePower <- as.numeric(rawData5$Global_active_power)
+rawData5$GlobalActivePower <- as.numeric(rawData5$Global_active_power)
 rawData5 <- cbind(rawData5,GlobalActivePower)
 
 
 #Plot Data
 par(mfrow = c(1,1))
-hist(rawData5$GlobalActivePower, main = "Global Active Power",
-     xlab = "Global Active Power (Kilowatts)",
-     ylab = "Frequency",
-     col = "red")
+plot(rawData5$Date,rawData5$GlobalActivePower)
 
 #Copy to PNG
 dev.copy(png, file = "plot1.png" )
