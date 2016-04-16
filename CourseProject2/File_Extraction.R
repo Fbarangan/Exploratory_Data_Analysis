@@ -29,4 +29,23 @@ dateOfDownload <- date()
 NEI <- readRDS ("./CourseProject2/PM25_Raw_Data/PeerAssessment/summarySCC_PM25.rds")
 SCC <- readRDS ("./CourseProject2/PM25_Raw_Data/PeerAssessment/Source_Classification_Code.rds")
 
+# Turn table into dplyr
+NEI_ddply <- tbl_df(NEI)
+SCC_ddply <- tbl_df(SCC)
+
+# Plot 1
+# Summary of data per year, group by year, then summarize total of emmision by year using dply pipeline.
+table(NEI_ddply$year)
+
+by_Year <- group_by(NEI_ddply,year)
+EmissionByYear <- summarise(by_Year, Total = sum(Emissions))
+
+
+# rename
+
+# Plot1
+
+
+
+
 
