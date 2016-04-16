@@ -26,7 +26,7 @@ dateOfDownload <- date()
 # need to go to the correct directory
 
 # Read  .rds file
-NEI <- readRDS ("./PM25_Raw_Data/PeerAssessment/summarySCC_PM25.rds")
-SCC <- readRDS ("./PM25_Raw_Data/PeerAssessment/Source_Classification_Code.rds")
+NEI <- readRDS ("./CourseProject2/PM25_Raw_Data/PeerAssessment/summarySCC_PM25.rds")
+SCC <- readRDS ("./CourseProject2/PM25_Raw_Data/PeerAssessment/Source_Classification_Code.rds")
 
 
