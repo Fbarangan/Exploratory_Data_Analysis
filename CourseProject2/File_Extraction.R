@@ -49,8 +49,36 @@ EmissionsByYear$Emission <- log10(EmissionsByYear$Emission)
 plot(EmissionsByYear$Year, EmissionsByYear$Emission,
       xlab= "Year",
       ylab = "Total Emission by Year",
+      main = "Comparison of Total Emission (PM2.5) from 2000 to 2008",
       pch = 10)
 
+# Plot 2
+#Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008? Use the base plotting system to make a plot answering this question.
 
+Baltimore_Emission <- NEI_ddply %>%
+        filter(fips == "24510") %>%
+        group_by(year) %>%
+        summarise(Total = sum(Emissions )) %>%
+        select(Year = year, Emission = Total)
 
+with (Baltimore_Emission, (plot(Year, Emission,
+                                xlab = "Year",
+                                ylab = "Total Emission",
+                                main = "Total Emission (PM2.5) for Baltimore City",
+                                pch= 1)))
+
+# Plot 3
+# Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the ggplot2 plotting system to make a plot answer this question.
+
+TypeOfSource <- NEI_ddply %>%
+        filter(fips == "24510") %>%
+        group_by(type, year) %>%
+        summarise(Total = sum(Emissions )) %>%
+        select(Year = year, Emission = Total, Type = type)
+
+plot_TypeOfSouce <- qplot(Year, Emission, geom = "path",
+                          color = Type,data= TypeOfSource)+
+        ggtitle("Total Emission of PM2.5 in Baltimore City by Type by Year") +
+        xlab("Year(s)") +
+        ylab ("Total Emission (PM2.5)")
 
