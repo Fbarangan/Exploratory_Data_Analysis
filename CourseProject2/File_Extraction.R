@@ -11,7 +11,7 @@ if (!file.exists("PM25_Raw_Data")) {
   dir.create("PM25_Raw_Data")
 }
 
-Desktop/DataScienceCourse/Exploratory_Data_Analysis
+# Desktop/DataScienceCourse/Exploratory_Data_Analysis
 
 fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
 
@@ -61,11 +61,11 @@ Baltimore_Emission <- NEI_ddply %>%
         summarise(Total = sum(Emissions )) %>%
         select(Year = year, Emission = Total)
 
-with (Baltimore_Emission, (plot(Year, Emission,
+plot(Baltimore_Emission$Year, Baltimore_Emission$Emission,
                                 xlab = "Year",
                                 ylab = "Total Emission",
                                 main = "Total Emission (PM2.5) for Baltimore City",
-                                pch= 1)))
+                                pch= 1)
 
 # Plot 3
 # Of the four types of sources indicated by the type (point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the ggplot2 plotting system to make a plot answer this question.
@@ -123,4 +123,15 @@ plot_Baltimore_on_Road <- qplot(Year, Emission, data = Baltimore_Emission_on_Roa
         ggtitle("Total Emission of PM2.5 in Baltimore City with motor vehicle sources = On-road") +
         xlab ("Years(s)") +
         ylab ("Total Emission (PM2.5)")
+
+# Plot 6
+#Compare emissions from motor vehicle sources in Baltimore City with emissions from motor vehicle sources in Los Angeles County, California (fips == "06037"). Which city has seen greater changes over time in motor vehicle emissions?
+
+ LosAngeles_VS_Baltimore <- NEI_ddply %>%
+        filter(fips %in% c("06037", "24510")) %>%
+        filter(type == 'ON-ROAD') %>%
+         group_by(year, fips) %>%
+         summarise(Total = sum(Emissions ))
+
+
 
