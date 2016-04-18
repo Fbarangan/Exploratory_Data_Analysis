@@ -82,3 +82,23 @@ plot_TypeOfSouce <- qplot(Year, Emission, geom = "path",
         xlab("Year(s)") +
         ylab ("Total Emission (PM2.5)")
 
+
+# Plot 4
+# Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
+
+coal <- SCC_ddply %>%
+        filter(grepl('Coal', Short.Name) | grepl('Coal', EI.Sector))
+
+
+coal_NEI <- NEI_ddply %>%
+        filter(SCC %in% coal$SCC) %>%
+        group_by(year) %>%
+        summarise(Total = sum(Emissions)) %>%
+        select(Year = year, Emission = Total)
+
+plot_coal_NEI <- qplot(Year, Emission, data = coal_NEI,
+                       geom = "line") +
+        ggtitle("Total Emission of PM2.5 in Baltimore City with Coal Combustion Realted Source") +
+        xlab ("Years(s)") +
+        ylab ("Total Emission (PM2.5)")
+
