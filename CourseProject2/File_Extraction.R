@@ -102,3 +102,25 @@ plot_coal_NEI <- qplot(Year, Emission, data = coal_NEI,
         xlab ("Years(s)") +
         ylab ("Total Emission (PM2.5)")
 
+# Plot 5
+#How have emissions from motor vehicle sources changed from 1999–2008 in Baltimore City?
+
+# Filter Motor vehicle source = "On-Road using the table SCC
+onRoad_Source <- filter(SCC_ddply, grepl('On-Road', EI.Sector))
+
+#Filter Baltimore City using above filter
+
+Baltimore_Emission_on_Road <- NEI_ddply %>%
+        filter(fips == "24510") %>%
+        filter(SCC %in% coal$SCC) %>%
+        group_by(year) %>%
+        summarise(Total = sum(Emissions )) %>%
+        select(Year = year, Emission = Total)
+#plot
+
+plot_Baltimore_on_Road <- qplot(Year, Emission, data = Baltimore_Emission_on_Road,
+                       geom = "line") +
+        ggtitle("Total Emission of PM2.5 in Baltimore City with motor vehicle sources = On-road") +
+        xlab ("Years(s)") +
+        ylab ("Total Emission (PM2.5)")
+
