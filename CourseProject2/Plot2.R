@@ -41,8 +41,11 @@ Baltimore_Emission <- NEI_ddply %>%
         summarise(Total = sum(Emissions )) %>%
         select(Year = year, Emission = Total)
 
-plot(Baltimore_Emission$Year, Baltimore_Emission$Emission,
+plot2 <- plot(Baltimore_Emission$Year, Baltimore_Emission$Emission,
                                 xlab = "Year",
                                 ylab = "Total Emission",
                                 main = "Total Emission (PM2.5) for Baltimore City",
                                 pch= 1)
+print(plot1)
+dev.copy(png, file = "plot2.png")
+dev.off()

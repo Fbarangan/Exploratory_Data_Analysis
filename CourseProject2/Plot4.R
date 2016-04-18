@@ -51,3 +51,7 @@ plot_coal_NEI <- qplot(Year, Emission, data = coal_NEI,
         ggtitle("Total Emission of PM2.5 in Baltimore City with Coal Combustion Realted Source") +
         xlab ("Years(s)") +
         ylab ("Total Emission (PM2.5)")
+
+print(plot_coal_NEI)
+dev.copy(png, file = "plot4.png")
+dev.off()

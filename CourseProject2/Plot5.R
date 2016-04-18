@@ -52,3 +52,9 @@ plot_Baltimore_on_Road <- qplot(Year, Emission, data = Baltimore_Emission_on_Roa
         ggtitle("Total Emission of PM2.5 in Baltimore City with motor vehicle sources = On-road") +
         xlab ("Years(s)") +
         ylab ("Total Emission (PM2.5)")
+
+print(plot_Baltimore_on_Road)
+dev.copy(png, file = "plot5.png")
+dev.off()
+
+

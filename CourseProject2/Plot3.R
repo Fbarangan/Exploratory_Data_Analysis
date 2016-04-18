@@ -47,5 +47,8 @@ plot_TypeOfSouce <- qplot(Year, Emission, geom = "path",
         xlab("Year(s)") +
         ylab ("Total Emission (PM2.5)")
 
+print(plot_TypeOfSouce)
+dev.copy(png, file = "plot_TypeOfSouce.png")
+dev.off()
 
 

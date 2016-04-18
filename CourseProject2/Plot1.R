@@ -44,10 +44,14 @@ EmissionsByYear <- NEI_ddply %>%
 # Convert to log of 10 for better visualization
 EmissionsByYear$Emission <- log10(EmissionsByYear$Emission)
 
-#Plot using Base
-plot(EmissionsByYear$Year, EmissionsByYear$Emission,
-      xlab= "Year",
-      ylab = "Total Emission by Year",
-      main = "Comparison of Total Emission (PM2.5) from 2000 to 2008",
-      pch = 10)
 
+#Plot using Base
+plot1 <- plot(EmissionsByYear$Year, EmissionsByYear$Emission,
+        xlab= "Year",
+        ylab = "Total Emission by Year",
+        main = "Comparison of Total Emission (PM2.5) from 2000 to 2008",
+        pch = 10)
+
+print(plot1)
+dev.copy(png, file = "plot1.png")
+dev.off()

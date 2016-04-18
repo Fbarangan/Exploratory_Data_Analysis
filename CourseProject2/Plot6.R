@@ -49,3 +49,6 @@ plot_LosAngeles_VS_Baltimore <- qplot(Year, Emission, geom = "line",
          xlab("Year(s)") +
          ylab ("Total Emission (PM2.5)")
 
+print(plot_LosAngeles_VS_Baltimore)
+dev.copy(png, file = "plot6.png")
+dev.off()

@@ -11,7 +11,6 @@ if (!file.exists("PM25_Raw_Data")) {
   dir.create("PM25_Raw_Data")
 }
 
-# Desktop/DataScienceCourse/Exploratory_Data_Analysis
 
 fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
 
@@ -23,7 +22,7 @@ dateOfDownload <- date()
 #    Source_Classification_Code.rds
 #    summarySCC_PM25.rds
 
-# need to go to the correct directory
+# Make sure to go to the right directory
 
 # Read  .rds file
 NEI <- readRDS ("./CourseProject2/PM25_Raw_Data/PeerAssessment/summarySCC_PM25.rds")
@@ -34,7 +33,7 @@ NEI_ddply <- tbl_df(NEI)
 SCC_ddply <- tbl_df(SCC)
 
 # Plot 1
-# Summary of data per year, group by year, then summarize total of emmision by year using dply pipeline.
+# Summary of data per year, group by year, then summarize total of emmision by year using dplyr pipeline.
 table(NEI_ddply$year)
 
 EmissionsByYear <- NEI_ddply %>%
