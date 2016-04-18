@@ -41,14 +41,15 @@ TypeOfSource <- NEI_ddply %>%
         summarise(Total = sum(Emissions )) %>%
         select(Year = year, Emission = Total, Type = type)
 
+par(mar=c(5,5,4,2))
 plot_TypeOfSouce <- qplot(Year, Emission, geom = "path",
                           color = Type,data= TypeOfSource)+
-        ggtitle("Total Emission of PM2.5 in Baltimore City by Type by Year") +
+        ggtitle("Total Emission (PM2.5) in Baltimore City by Type/Year") +
         xlab("Year(s)") +
         ylab ("Total Emission (PM2.5)")
 
 print(plot_TypeOfSouce)
-dev.copy(png, file = "plot_TypeOfSouce.png")
+dev.copy(png, file = "plot3.png")
 dev.off()
 
 

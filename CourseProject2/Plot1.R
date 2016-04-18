@@ -44,12 +44,12 @@ EmissionsByYear <- NEI_ddply %>%
 # Convert to log of 10 for better visualization
 EmissionsByYear$Emission <- log10(EmissionsByYear$Emission)
 
-
+par(mar=c(5,5,4,2))
 #Plot using Base
 plot1 <- plot(EmissionsByYear$Year, EmissionsByYear$Emission,
         xlab= "Year",
         ylab = "Total Emission by Year",
-        main = "Comparison of Total Emission (PM2.5) from 2000 to 2008",
+        main = "Total Emission (PM2.5) from 2000 to 2008",
         pch = 10)
 
 print(plot1)

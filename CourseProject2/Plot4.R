@@ -46,9 +46,10 @@ coal_NEI <- NEI_ddply %>%
         summarise(Total = sum(Emissions)) %>%
         select(Year = year, Emission = Total)
 
+par(mar=c(5,5,4,2))
 plot_coal_NEI <- qplot(Year, Emission, data = coal_NEI,
                        geom = "line") +
-        ggtitle("Total Emission of PM2.5 in Baltimore City with Coal Combustion Realted Source") +
+        ggtitle("Total Emission (PM2.5) in Baltimore City -Coal Combustion Source") +
         xlab ("Years(s)") +
         ylab ("Total Emission (PM2.5)")
 
