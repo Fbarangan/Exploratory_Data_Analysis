@@ -130,8 +130,15 @@ plot_Baltimore_on_Road <- qplot(Year, Emission, data = Baltimore_Emission_on_Roa
  LosAngeles_VS_Baltimore <- NEI_ddply %>%
         filter(fips %in% c("06037", "24510")) %>%
         filter(type == 'ON-ROAD') %>%
-         group_by(year, fips) %>%
-         summarise(Total = sum(Emissions ))
+        group_by(year, fips) %>%
+        summarise(Total = sum(Emissions )) %>%
+        select(Year = year, fips, Emission = Total)
 
+ # Plot
+plot_LosAngeles_VS_Baltimore <- qplot(Year, Emission, geom = "line",
+                           color = fips ,data= LosAngeles_VS_Baltimore) +
+         ggtitle("Total Emission of PM2.5 in Baltimore  Vs LA ;Type = On-ROAD by Year") +
+         xlab("Year(s)") +
+         ylab ("Total Emission (PM2.5)")
 
 
